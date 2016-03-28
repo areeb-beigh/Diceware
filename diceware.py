@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 from sys import exit
@@ -11,55 +11,55 @@ invalidInput = " [-] Invalid input"
 dicewareFile = "diceware_list.txt"
 
 def main():
-	print " Extracting diceware list from {}\n".format(dicewareFile)
+	print(" Extracting diceware list from {}\n".format(dicewareFile))
 	extractor().extract()
 	generate_dictionary()
 	greet()
 
 def greet():
-	print "--------------------------------------------------------------------\n"
-	print " Diceware password generator by Areeb Beigh - www.areebbeigh.tk"
-	print " This is a simple application that will generate n number of diceware", \
-		"passphrases for you, based on your input\n"
+	print("--------------------------------------------------------------------\n")
+	print(" Diceware password generator by Areeb Beigh - www.areebbeigh.tk")
+	print(" This is a simple application that will generate n number of diceware"),
+	print(" passphrases for you, based on your input\n")
 
-	print " Hit enter to continue..."
-	raw_input()
+	print(" Hit enter to continue...")
+	input()
 	prompt()
 
 # Print the code description and ask details about desired password
 def prompt():
-	print " How many passwords do you want to generate?"
+	print(" How many passwords do you want to generate?")
 
-	# Print invalidInput if the input is not an integer
+	# print(invalidInput) if the input is not an integer
 	try:
-		passwords = int(raw_input(' > '))
-	except ValueError:
-		print invalidInput
+		passwords = int(input(' > '))
+	except(ValueError):
+		print(invalidInput)
 		prompt()
 	except KeyboardInterrupt:
-		print " Thank you for using Diceware Generator"
+		print(" Thank you for using Diceware Generator")
 		exit(0)
 
-	print " How many phrases do you want in your password(s)? (Recommended: 6)"
+	print(" How many phrases do you want in your password(s)? (Recommended: 6)")
 
 	try:
-		phrases = int(raw_input(' > '))
-	except ValueError:
-		print invalidInput
+		phrases = int(input(' > '))
+	except(ValueError):
+		print(invalidInput)
 		prompt()
-	except KeyboardInterrupt:
-		print " Thank you for using Diceware Generator"
+	except(KeyboardInterrupt):
+		print(" Thank you for using Diceware Generator")
 		exit(0)
 
 	# Phrases and passwords must be greater than 0
 	if phrases > 0 and passwords > 0:
-		print "--------------------------------------------------------------------"
-		print " Your diceware passphrases: "
+		print("--------------------------------------------------------------------")
+		print(" Your diceware passphrases: ")
 		for i in range(0, passwords):
-			print "\n" + generate_password(phrases)
-		print "--------------------------------------------------------------------"
+			print("\n" + generate_password(phrases))
+		print("--------------------------------------------------------------------")
 	else:
-		print invalidInput
+		print(invalidInput)
 		prompt()
 
 	prompt()
@@ -110,7 +110,7 @@ def generate_dictionary():
 				dicewareDict.update(pair)
 			else:
 				pass
-		except ValueError:
+		except(ValueError):
 			pass
 
 # Generate diceware passwords
