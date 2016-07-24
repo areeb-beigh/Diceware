@@ -4,8 +4,8 @@
 # github.com/areeb-beigh
 
 """
-This application generate 'n' number of diceware passwords each with
-'m' number of phrases, whole number value both 'n' and 'm' depend upon the user
+This application generates 'n' number of diceware passwords each with 'm' number of phrases 
+where, both hole number values 'n' and 'm' depend upon the user's input parameters
 """
 
 from sys import exit
