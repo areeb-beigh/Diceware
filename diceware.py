@@ -1,112 +1,130 @@
-# Python Diceware Generate by Areeb 
+# Author: Areeb Beigh
 # Created: 11th June 2016
 
 # github.com/areeb-beigh
 
 """
-This application generates 'n' number of diceware passwords each with 'm' number of phrases 
-where, both hole number values 'n' and 'm' depend upon the user's input parameters
+This application generate 'n' number of diceware passwords each with
+'m' number of phrases, whole number value both 'n' and 'm' depend upon the user
 """
 
-from sys import exit
 from random import randint
 
+
 # Error message for invalid input
-invalidInput = " [-] Invalid input"
+invalid_input = " [-] Invalid input"
 
 # The name of the diceware list file
-dicewareFile = "diceware_list.txt"
+diceware_file = "diceware_list.txt"
 
-def generateDicewareDict():
-	# Generates and returns key - value pairs of diceware keys and phrases
-	# in the form of a dictionary
 
-	dictionary = {}
+def generate_diceware_dict():
+    """
+    Generates and returns key - value pairs of diceware keys and phrases
+    in the form of a dictionary
+    """
 
-	with open('diceware_list.txt', 'r') as f:
-		lines = f.readlines()
+    dictionary = {}
 
-		for line in lines:
-			line = line.split()
-			dictionary[int(line[0])] = line[1]
+    with open(diceware_file, 'r') as f:
+        lines = f.readlines()
 
-	return dictionary
+        for line in lines:
+            line = line.split()
+            dictionary[int(line[0])] = line[1]
 
-def generatePassword(phrases, dicewareDict):
-	# Returns a diceware passphrase string with 'n' number of phrases
-	# Arguement phrases is a whole number
+    return dictionary
 
-	# Diceware keys will be appended to this list
-	diceKeys = []
-	# Phrases from the diceware dictionary will be concatinated here
-	passphrase = ""
 
-	for i in range(phrases):
-		# Virtually roll a dice five times and store the numbers
-		rollDice1 = randint(1,6)
-		rollDice2 = randint(1,6)
-		rollDice3 = randint(1,6)
-		rollDice4 = randint(1,6)
-		rollDice5 = randint(1,6)
+def generate_password(phrases, diceware_dict):
+    """
+    Returns a diceware pass_phrase string with 'n' number of phrases.
 
-		# Makes a diceware key with the dice roll results
-		dicewareKey = str(rollDice1) + str(rollDice2) + str(rollDice3) + str(rollDice4) + str(rollDice5)
+    Parameters:
+        phrases:
+            Number of phrases in each pass phrase
 
-		# Appends the key to the diceKeys list
-		diceKeys.append(int(dicewareKey))
+        diceware_dict:
+            The diceware dictionary
+    """
 
-	# Generates a passphrase using the keys in the diceKeys list
-	for key in diceKeys:
-		value = dicewareDict[key]
-		passphrase += ' ' + value
-	
-	return passphrase
+    # Diceware keys will be appended to this list
+    dice_keys = []
+    # Phrases from the diceware dictionary will be concatinated here
+    pass_phrase = ""
+
+    for i in range(phrases):
+        # Virtually roll a dice five times and store the numbers
+        roll_dice1 = randint(1,6)
+        roll_dice2 = randint(1,6)
+        roll_dice3 = randint(1,6)
+        roll_dice4 = randint(1,6)
+        roll_dice5 = randint(1,6)
+
+        # Makes a diceware key with the dice roll results
+        diceware_key = \
+            str(roll_dice1) + \
+            str(roll_dice2) + \
+            str(roll_dice3) + \
+            str(roll_dice4) + \
+            str(roll_dice5)
+
+        # Appends the key to the dice_keys list
+        dice_keys.append(int(diceware_key))
+
+    # Generates a pass_phrase using the keys in the dice_keys list
+    for key in dice_keys:
+        value = diceware_dict[key]
+        pass_phrase += ' ' + value
+
+    return pass_phrase
+
 
 def prompt(dictionary):
-	# Asks details about desired password
+    """ Asks details about the desired password """
 
-	print(" How many password(s) do you want to generate?")
+    print(" How many password(s) do you want to generate?")
 
-	# Prints invalid input message if the input is not an integer
-	try:
-		passwords = int(input(' > '))
-	except(ValueError):
-		print(invalidInput)
-		prompt(dictionary)
+    # Prints invalid input message if the input is not an integer
+    try:
+        passwords = int(input(' > '))
+    except ValueError:
+        print(invalid_input)
+        prompt(dictionary)
 
-	print(" How many phrases do you want in your password(s)? (Recommended: 6)")
+    print(" How many phrases do you want in your password(s)? (Recommended: 6)")
 
-	try:
-		phrases = int(input(' > '))
-	except(ValueError):
-		print(invalidInput)
-		prompt(dictionary)
+    try:
+        phrases = int(input(' > '))
+    except ValueError:
+        print(invalid_input)
+        prompt(dictionary)
 
-	# Phrases and passwords must be greater than 0 (duh?)
-	if (phrases > 0 and passwords > 0):
-		print("--------------------------------------------------------------------")
-		print(" Your diceware passphrases: ")
+    # Phrases and passwords must be greater than 0 (duh?)
+    if phrases > 0 and passwords > 0:
+        print("--------------------------------------------------------------------")
+        print(" Your diceware passphrases: ")
 
-		for i in range(passwords):
-			print("\n" + generatePassword(phrases, dictionary))
+        for i in range(passwords):
+            print("\n" + generate_password(phrases, dictionary))
 
-		print("--------------------------------------------------------------------")
-	else:
-		print(invalidInput)
+        print("--------------------------------------------------------------------")
+    else:
+        print(invalid_input)
 
-	prompt(dictionary)
+    prompt(dictionary)
 
 if __name__ == '__main__':
-	
-	print(" Extracting diceware list from {}\n".format(dicewareFile))
-	
-	dicewareDict = generateDicewareDict()
 
-	print("--------------------------------------------------------------------\n")
-	print(" Diceware password generator by Areeb Beigh - github.com/areeb-beigh")
-	print(" This is a simple application that will generate n number of diceware"),
-	print(" passphrases for you, based on your input\n")
+    print(" Extracting diceware list from {}\n".format(diceware_file))
 
-	print(" Hit enter to continue...")
-	input()
-	prompt(dicewareDict)
+    diceware_dict = generate_diceware_dict()
+
+    print("--------------------------------------------------------------------\n")
+    print(" Diceware password generator by Areeb Beigh - github.com/areeb-beigh")
+    print(" This is a simple application that will generate n number of diceware"),
+    print(" pass-phrases, based on your input\n")
+
+    print(" Hit enter to continue...")
+    input()
+    prompt(diceware_dict)
