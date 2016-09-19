@@ -1,7 +1,7 @@
 # Author: Areeb Beigh
 # Created: 11th June 2016
 
-# github.com/areeb-beigh
+# github.com/areebbeigh
 
 """
 This application generate 'n' number of diceware passwords each with
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     diceware_dict = generate_diceware_dict()
 
     print("--------------------------------------------------------------------\n")
-    print(" Diceware password generator by Areeb Beigh - github.com/areeb-beigh")
+    print(" Diceware password generator by Areeb Beigh - github.com/areebbeigh")
     print(" This is a simple application that will generate n number of diceware"),
     print(" pass-phrases, based on your input\n")
 
